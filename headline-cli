@@ -2,7 +2,6 @@
 
 from bs4 import BeautifulSoup
 import requests
-from requests.api import options
 from termcolor import colored
 
 # This code will be relevant one day...
@@ -18,6 +17,7 @@ print("Current article fetch limit is:", colored(article_limit, "cyan"))
 
 counter = 0
 while True:
+   counter = 0
    fetch = input("What news do you want to recive?: ")
 
    raw = requests.get("https://www.bing.com/news/search?q=" + fetch).text
@@ -33,4 +33,4 @@ while True:
       print(colored("Source:", "magenta") , data.get("url"))
 
       if counter == article_limit:
-         print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-= \n")
+         print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=", colored("END", "yellow"), "\n")
