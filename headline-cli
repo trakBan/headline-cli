@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
 
-from bs4 import BeautifulSoup
-import requests
-from termcolor import colored
+try:
+   from bs4 import BeautifulSoup
+   import requests, sys
+   from termcolor import colored
+   
+except:
+   print("One or more library is missing!")
 
-# This code will be relevant one day...
-#with open("options.json", "r") as read_file:
-#   options = json.load(read_file)
-#article_limit = options["limit"]
+try:
+    args = sys.argv[1]
+    number = sys.argv[2]
 
-article_limit = 5 # Change this number to your liking
+    if args == "-n":
+       article_limit = number
+
+except:
+   article_limit = 5 # This is the default limit without passing in any arguments. You can change that variable to your liking
+   print(f"Using default article limit: {article_limit}")
 
 print(colored("Welcome to CLI news headline tool!", "green"))
 print("Some news might be", colored("biased", "red"), "because it is using bing search engine to fetch the news \n")
 print("Current article fetch limit is:", colored(article_limit, "cyan"))
+
+article_limit = int(article_limit)
 
 counter = 0
 while True:
@@ -32,5 +42,5 @@ while True:
       print(colored("Snippet:", "cyan") , title.get("title"))
       print(colored("Source:", "magenta") , data.get("url"))
 
-      if counter == article_limit:
+      if counter == article_limit or counter == 11:
          print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=", colored("END", "yellow"), "\n")
