@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+from bs4 import BeautifulSoup
+import requests
+from requests.api import options
+from termcolor import colored
+
+# This code will be relevant one day...
+#with open("options.json", "r") as read_file:
+#   options = json.load(read_file)
+#article_limit = options["limit"]
+
+article_limit = 5 # Change this number to your liking
+
+print(colored("Welcome to CLI news headline tool!", "green"))
+print("Some news might be", colored("biased", "red"), "because it is using bing search engine to fetch the news \n")
+print("Current article fetch limit is:", colored(article_limit, "cyan"))
+
+counter = 0
+while True:
+   fetch = input("What news do you want to recive?: ")
+
+   raw = requests.get("https://www.bing.com/news/search?q=" + fetch).text
+   soup = BeautifulSoup(raw, "html.parser")
+
+   for data in soup.find_all("div", class_ = "news-card newsitem cardcommon b_cards2", limit = article_limit):
+      counter += 1
+
+      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=", colored(counter, "green"), "\n")
+      print(colored("Headline:", "cyan") , data.get("data-title"))
+      title = data.find("div", class_ = "snippet")
+      print(colored("Snippet:", "cyan") , title.get("title"))
+      print(colored("Source:", "magenta") , data.get("url"))
+
+      if counter == article_limit:
+         print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-= \n")
