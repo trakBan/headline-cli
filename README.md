@@ -3,7 +3,8 @@ Get your news from the terminal!
 
 # Passing arguments
 
--h or --help is used to display what each argumen tdoes
+-h or --help is used to display what each argumen does
+
 -n used for article limit - example of use is -n {number}
 
 # How to install
