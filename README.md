@@ -13,6 +13,7 @@ Get your news from the terminal!
 2. run chmod +x headline-cli (You may need to use sudo)
 3. run sudo python setup.py install
 4. Restart your terminal
+5. to execute the program just type headline-cli
 
 # How to modify
 If you want to modify the number of articles you want to show, just edit the article_limit variable
