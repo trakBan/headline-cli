@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# TODO: update README.md for -n arg
+
 try:
    from bs4 import BeautifulSoup
    import requests, sys
@@ -10,10 +12,25 @@ except:
 
 try:
     args = sys.argv[1]
-    number = sys.argv[2]
 
     if args == "-n":
-       article_limit = number
+      
+      # The reason for this is that if 2 arguments are passed it will throw an error. Thats the reason for having try inside the try.
+      try:
+          number = sys.argv[2]
+          article_limit = number
+
+      # If no number is provided with the -n it will go with the default
+      except:
+          print("No number is passed, going with the default.")
+          article_limit = 5
+
+      # Outputs help
+    if args == "-h" or args == "--help":
+       print("""
+       -n   used for article limit - example of use is -n [number]
+       """)
+       article_limit = 5
 
 except:
    article_limit = 5 # This is the default limit without passing in any arguments. You can change that variable to your liking

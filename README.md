@@ -1,6 +1,11 @@
 # headline-cli
 Get your news from the terminal!
 
+# Passing arguments
+
+-h or --help is used to display what each argumen tdoes
+-n used for article limit - example of use is -n {number}
+
 # How to install
 
 1. Be sure you are in a right directory
@@ -8,9 +13,7 @@ Get your news from the terminal!
 3. run sudo python setup.py install
 4. Restart your terminal
 
-# How to use and modify
-
-To use you simply type headline-cli into the terminal
+# How to modify
 If you want to modify the number of articles you want to show, just edit the article_limit variable
 
 ![Selection_049](https://user-images.githubusercontent.com/81049050/144477259-337095d4-9be0-47cd-ba25-fee06922ba30.png)
